@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Login</title>
+</head>
 <body>
-<form action="/login" method="post">
-  <input name="email" />
-  <input name="password" type="password"/>
-  <button type="submit">Login</button>
-</form>
+    <h2>Login</h2>
+
+    <form action="/login" method="post">
+        <input name="email" type="email" placeholder="Enter email" required />
+        <br><br>
+        <input name="password" type="password" placeholder="Enter password" required />
+        <br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <br>
+    <a href="/signup">Go to Signup</a>
 </body>
 </html>
