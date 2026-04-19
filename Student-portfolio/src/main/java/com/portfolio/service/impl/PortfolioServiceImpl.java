@@ -1,15 +1,18 @@
-package com.portfolio.service.impl;
+private PortfolioRepository repository = new PortfolioRepositoryImpl();
 
-import com.portfolio.model.Portfolio;
-import com.portfolio.service.PortfolioService;
-import org.springframework.stereotype.Service;
+public void createPortfolio(String bio) {
 
-@Service
-public class PortfolioServiceImpl implements PortfolioService {
+    String userId = SessionManager.getUser().getId();
 
-    public void createPortfolio(String bio) {}
+    Portfolio portfolio = new PortfolioBuilder()
+            .setUserId(userId)
+            .setBio(bio)
+            .build();
 
-    public Portfolio getMyPortfolio() {
-        return null;
-    }
+    repository.save(portfolio);
+}
+
+public Portfolio getMyPortfolio() {
+    String userId = SessionManager.getUser().getId();
+    return repository.findByUserId(userId);
 }

@@ -1,10 +1,21 @@
 package com.portfolio.repository;
 
 import com.portfolio.model.Portfolio;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
-public interface PortfolioRepository {
-    void save(Portfolio portfolio);
-    Portfolio findByUserId(String userId);
-    List<Portfolio> findAll();
+import java.util.HashMap;
+import java.util.Map;
+
+@Repository
+public class PortfolioRepositoryImpl implements PortfolioRepository {
+
+    private Map<String, Portfolio> portfolioDB = new HashMap<>();
+
+    public void save(Portfolio portfolio) {
+        portfolioDB.put(portfolio.getUserId(), portfolio);
+    }
+
+    public Portfolio findByUserId(String userId) {
+        return portfolioDB.get(userId);
+    }
 }
