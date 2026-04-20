@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dashboard</title>
 </head>
 <body>
-    <h2>Welcome to Student Portfolio Dashboard</h2>
 
-    <a href="/portfolio">My Portfolio</a>
-    <br><br>
+    <h2>Welcome to Dashboard</h2>
+
+    <p>
+        Logged in as:
+        <span th:text="${userEmail}"></span>
+    </p>
+
+    <hr>
+
+    <h3>Add Project</h3>
+
+    <form action="/projects/add" method="post">
+        <input type="text" name="title" placeholder="Project Title" required />
+        <br><br>
+
+        <textarea name="description" placeholder="Project Description" rows="4" cols="40" required></textarea>
+        <br><br>
+
+        <button type="submit">Add Project</button>
+    </form>
+
+    <hr>
+
+    <h3>My Projects</h3>
+
+    <div th:if="${#lists.isEmpty(projects)}">
+        <p>No projects added yet.</p>
+    </div>
+
+    <div th:each="project : ${projects}">
+        <h4 th:text="${project.title}"></h4>
+        <p th:text="${project.description}"></p>
+        <hr>
+    </div>
+
+    <br>
     <a href="/search">Search Students</a>
+    <br><br>
+    <a href="/portfolio">My Portfolio</a>
+
 </body>
 </html>
