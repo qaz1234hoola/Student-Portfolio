@@ -42,8 +42,8 @@ public class AuthController {
         boolean success = authService.login(email, password);
 
         if (success) {
-            return "dashboard";
+            return "redirect:/dashboard";
         }
         return "login";
-    }
+    
 }
