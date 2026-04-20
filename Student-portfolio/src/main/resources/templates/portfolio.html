@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Portfolio</title>
+</head>
+<body>
+
+    <h2>My Portfolio</h2>
+
+    <p>
+        Logged in as:
+        <span th:text="${userEmail}"></span>
+    </p>
+
+    <hr>
+
+    <h3>Create / Update Portfolio</h3>
+
+    <form action="/portfolio/save" method="post">
+        <label for="bio">Bio:</label>
+        <br><br>
+        <textarea id="bio" name="bio" rows="6" cols="50" placeholder="Enter your bio here..." th:text="${portfolio.bio}"></textarea>
+        <br><br>
+        <button type="submit">Save Portfolio</button>
+    </form>
+
+    <hr>
+
+    <h3>Current Portfolio</h3>
+
+    <div th:if="${portfolio.bio == null or portfolio.bio.isEmpty()}">
+        <p>No portfolio created yet.</p>
+    </div>
+
+    <div th:if="${portfolio.bio != null and !portfolio.bio.isEmpty()}">
+        <p th:text="${portfolio.bio}"></p>
+    </div>
+
+    <br><br>
+    <a href="/dashboard">Go to Dashboard</a>
+    <br><br>
+    <a href="/search">Search Students</a>
+
+</body>
+</html>
